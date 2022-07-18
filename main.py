@@ -1,3 +1,4 @@
+import datetime
 import http.server
 import socketserver
 
@@ -13,7 +14,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
         print(self.request)
 
-        self.wfile.write(self.headers.as_bytes())
+        for header in self.headers:
+            self.wfile.write(str.encode(header))
+
+        self.wfile.write(str.encode('\n'))
+
+        self.wfile.write(str.encode(datetime.datetime.now().strftime('%Y-%m-%d, %H:%M:%S')))
+
 
 
 with socketserver.TCPServer(("", PORT), Handler) as httpd:
