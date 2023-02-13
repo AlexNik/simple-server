@@ -14,6 +14,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
         print(self.request)
 
+        self.wfile.write(str.encode('peer: ' + str(self.request.getpeername())))
+        self.wfile.write(str.encode('<br/>'))
+
         for k, v in self.headers.items():
             self.wfile.write(str.encode(k + ": " + v))
             self.wfile.write(str.encode('<br/>'))
