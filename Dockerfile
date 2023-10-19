@@ -1,4 +1,4 @@
-FROM python:alpine as compile
+FROM python:3.10-alpine3.16 as compile
 
 # hadolint ignore=DL3013,DL3018
 RUN apk add --no-cache binutils && \
