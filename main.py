@@ -24,6 +24,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         # self.wfile.write(str.encode('<br/>'))
         # self.wfile.write(str.encode(datetime.datetime.now().strftime('%Y-%m-%d, %H:%M:%S')))
 
+    def do_POST(self):
+        self.do_GET()
+
+    def do_PUT(self):
+        self.do_GET()
+
 
 
 with socketserver.TCPServer(("", PORT), Handler) as httpd:
